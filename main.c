@@ -430,6 +430,26 @@ Emprestimo* devolverLivro(Emprestimo *inicioE, Livro *inicioL) {
     return inicioE;
 }
 
+// ==== FUNÇÃO OBRIGATÓRIA DO TRABALHO ====
+
+void contarLivrosAntes2000(Livro *inicio) {
+    if (inicio == NULL) {
+        printf("\nNenhum livro cadastrado.\n");
+        return;
+    }
+
+    int contador = 0;
+    Livro *atual = inicio;
+    while (atual != NULL) {
+        if (atual->ano < 2000) {
+            contador++;
+        }
+        atual = atual->prox;
+    }
+
+    printf("\nLivros publicados antes de 2000: %d\n", contador);
+}
+
 // ==== LIBERAR MEMÓRIA ====
 
 void liberarUsuarios(User *inicio) {
@@ -481,6 +501,7 @@ int main() {
         printf("7 - Realizar Emprestimo\n");
         printf("8 - Devolver Livro\n");
         printf("9 - Listar Emprestimos\n");
+        printf("10 - Contar livros publicados antes de 2000\n");
         printf("0 - Sair\n");
         printf("Escolha: ");
         scanf("%d", &opcao);
@@ -570,6 +591,11 @@ int main() {
                 }
                 break;
             }
+
+            case 10:
+                contarLivrosAntes2000(listaLivros);
+                break;
+
 
             case 0:
                 salvarDados(listaUsuarios, listaLivros, listaEmprestimos);
